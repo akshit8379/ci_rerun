@@ -20,18 +20,16 @@ jobs:
     steps:
       - name: 'BrowserStack Env Setup for Rerun'
         id: setup_rerun_vars
-        uses: 'browserstack/github-actions/setup-env@O11y-Rerun-np'
+        uses: 'browserstack/github-actions/setup-env@O11y-Rerun-Staging'
         with:
           username: ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          github-app: 'bstack-integrations-staging[bot]'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-app: 'bstack-integrations[bot]'
 
       - name: 'Use of BSTACK Environment Variables if Re-run'
         run: |
-            echo "Env variable is: ${{ env.actor }}"
-            echo "Env variable is: ${{ env.variable1 }}"
-            echo "Env variable is: ${{ env }}"
+            echo "Env variable is: ${{ env.test_to_run }}"
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
